@@ -1,30 +1,33 @@
-import React from 'react';
+import React from "react";
+import "../Css/Form.css";
 
 const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
+    const name = e.target.name.value.trim();
+    const email = e.target.email.value.trim();
 
-    if (name.trim() !== '' && email.trim() !== '') {
+    if (name !== "" && email !== "") {
       alert(`Name: ${name}\nEmail: ${email}`);
+      e.target.reset(); // Clear the form after submission
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label><br />
-          <input type="text" name="name" required />
+    <div className="form-wrapper">
+      <h2>Contact Us</h2>
+      <form onSubmit={handleSubmit} className="contact-form">
+        <div className="form-group">
+          <label htmlFor="name">Name</label>
+          <input type="text" name="name" id="name" placeholder="Your name" required />
         </div>
-        <br />
-        <div>
-          <label>Email:</label><br />
-          <input type="email" name="email" required />
+
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="your@email.com" required />
         </div>
-        <br />
-        <button type="submit">Submit</button>
+
+        <button type="submit" className="submit-btn">Submit</button>
       </form>
     </div>
   );
